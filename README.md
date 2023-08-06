@@ -8,7 +8,7 @@ Spawn arguments are the same as Deno.Command constructor parameters. It returns 
 
 script.ts:
 ```ts
-import spawn, { AssertiveSpawnPromiseError } from "https://deno.land/x/assertive-spawn-promise/mod.ts";
+import spawn, { AssertiveSpawnPromiseError } from "https://deno.land/x/assertive_spawn_promise/mod.ts";
 
 try {
     const promise = spawn(`deno`, { args: [`-V`] });
@@ -36,7 +36,7 @@ deno 1.35.3
 
 script.ts
 ```ts
-import spawn, { AssertiveSpawnPromiseError } from "https://deno.land/x/assertive-spawn-promise/mod.ts";
+import spawn, { AssertiveSpawnPromiseError } from "https://deno.land/x/assertive_spawn_promise/mod.ts";
 
 try {
     let denoVersion = ``;

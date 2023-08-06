@@ -8,17 +8,25 @@ import { join as pathJoin } from "https://deno.land/std@0.196.0/path/mod.ts";
 import spawn, { AssertiveSpawnPromiseError } from "../mod.ts";
 
 Deno.test(`Successfully spawns`, async () => {
-    // Arrange & Act
-    await spawn(`Deno`, { args: [`-V`] });
+    // Arrange
+    const scriptPath = pathJoin(Deno.cwd(), `test/testScripts/exitZero.sh`);
+
+    // Act
+    await spawn(`bash`, { args: [scriptPath] });
 
     // Assert
     assert(true);
 });
 
 Deno.test(`Returns child inside promise`, async () => {
-    // Arrange &Act
-    const promise = spawn(`Deno`, { args: [`-V`] });
+    // Arrange
+    const scriptPath = pathJoin(Deno.cwd(), `test/testScripts/exitZero.sh`);
+
+    // Act
+    const promise = spawn(`bash`, { args: [scriptPath] });
+
     const child = promise.child;
+
     await promise;
 
     // Assert

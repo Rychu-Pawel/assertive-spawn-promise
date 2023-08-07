@@ -46,25 +46,24 @@ Deno.test(`Rejects on error`, async () => {
     assertEquals(error!.errorCode, `ENOENT`);
 });
 
-/* This test fails, but looks like a bug in Deno */
-// Deno.test(`Rejects with correct signal`, async () => {
-//     // Arrange
-//     const signal = `SIGKILL`;
+Deno.test(`Rejects with correct signal`, async () => {
+    // Arrange
+    const signal = `SIGKILL`;
 
-//     const scriptPath = pathJoin(Deno.cwd(), `test/testScripts/fiveSecondsScript.sh`);
+    const scriptPath = pathJoin(Deno.cwd(), `test/testScripts/fiveSecondsScript.sh`);
 
-//     const sutMethod = async () => {
-//         const promise = spawn(`bash`, { args: [scriptPath] });
-//         promise.child.kill(signal);
-//         await promise;
-//     };
+    const sutMethod = async () => {
+        const promise = spawn(`bash`, { args: [scriptPath] });
+        promise.child.kill(signal);
+        await promise;
+    };
 
-//     // Act & Assert
-//     const error = await assertRejects(sutMethod) as AssertiveSpawnPromiseError;
+    // Act & Assert
+    const error = await assertRejects(sutMethod) as AssertiveSpawnPromiseError;
 
-//     // Assert
-//     assertEquals(error.signal, signal);
-// });
+    // Assert
+    assertEquals(error.signal, signal);
+});
 
 Deno.test(`Rejects with correct exit code`, async () => {
     // Arrange
